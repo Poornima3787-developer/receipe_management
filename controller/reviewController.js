@@ -1,4 +1,6 @@
-const { Review, Recipe, User } = require('../models');
+const Review = require('../models/review');
+const User=require('../models/user');
+const Recipe=require('../models/recipe');
 
 exports.addReview = async (req, res) => {
   try {

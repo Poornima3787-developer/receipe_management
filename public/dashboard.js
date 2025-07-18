@@ -1,5 +1,5 @@
 
-async function fetchRecipes(url='/recipe') {
+async function fetchRecipes(url='http://localhost:3000/recipe') {
   try {
     const res = await axios.get(url); 
     const recipes = res.data.recipes;
@@ -55,7 +55,7 @@ async function saveFavorite(recipeId) {
   }
 
   try {
-    await axios.post('/favorites', { recipeId }, {
+    await axios.post('http://localhost:3000/favorites', { recipeId }, {
       headers: { Authorization: token }
     });
     alert('Recipe saved to favorites!');
@@ -70,7 +70,7 @@ function handleNavbarSearch() {
   const difficulty = document.getElementById('difficultySelect').value;
   const diet = document.getElementById('dietSelect').value;
 
-  let url = '/recipe';
+  let url = 'http://localhost:3000/recipe';
 
   const params = new URLSearchParams();
   if (query) params.append('query', query);

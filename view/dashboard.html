@@ -5,69 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Recipe Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <style>
-   .navbar-brand img { height: 60px; }
-    .recipe-card { cursor: pointer; transition: transform 0.2s; }
-    .recipe-card:hover { transform: scale(1.02); }
-    .details { display: none; text-align: left; margin-top: 10px; }
-    .recipe-title { cursor: pointer; color: #0d6efd; text-decoration: underline; }
-    .recipe-title:hover { color: #0a58ca; }
-    .recipe-img { max-width: 100%; height: auto; border-radius: 5px; }
-    .menu-box {
-      background: #f8f9fa;
-      padding: 10px 15px;
-      border-radius: 8px;
-      margin: 20px auto;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 10px;
-      justify-content: center;
-    }
-    .menu-box a {
-      text-decoration: none;
-      color: #0d6efd;
-      font-weight: 500;
-      margin: 0 10px;
-    }
-    .menu-box a:hover { text-decoration: underline; }
-  </style>
+  <link rel="stylesheet" href="/css/dashboard.css" />
 </head>
 <body>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
   <a class="navbar-brand" href="#">
-    <img src="/public/images/image.png" alt="Logo" />
+    <img src="/images/image.png" alt="Logo" />
   </a>
   <div class="ms-auto">
-    <a href="login.html" class="btn btn-outline-primary me-2">Login</a>
-    <a href="register.html" class="btn btn-primary">Register</a>
+    <a href="/login" class="btn btn-outline-primary me-2">Login</a>
+    <a href="/register" class="btn btn-primary">Register</a>
   </div>
 </nav>
+<div class="main-section">
+<div class="container-fluid bg-light py-2 border-top border-bottom shadow-sm">
+  <div class="d-flex flex-wrap align-items-center justify-content-center gap-2 px-4">
 
-<div class="container mt-3">
-  <div class="menu-box">
-    <a href="profile.html">👤 Profile</a>
-    <a href="my-recipes.html">📖 My Recipes</a>
+    <div class="d-flex flex-wrap gap-2">
+      <a href="create-recipe.html" class="btn btn-outline-secondary btn-sm">create-recipe</a>
+      <a href="profile.html" class="btn btn-outline-secondary btn-sm">👤 Profile</a>
+      <a href="my-recipes.html" class="btn btn-outline-secondary btn-sm">📖 My Recipes</a>
+    </div>
 
-    <input type="text" id="navbarSearchInput" class="form-control w-auto" placeholder="Search recipes...">
-    
-    <select id="difficultySelect" class="form-select w-auto">
+    <input type="text" id="navbarSearchInput" class="form-control form-control-sm w-auto" placeholder="Search recipes..." />
+
+    <select id="difficultySelect" class="form-select form-select-sm w-auto">
       <option value="">All Levels</option>
       <option value="easy">Easy</option>
       <option value="medium">Medium</option>
       <option value="hard">Hard</option>
     </select>
 
-    <select id="dietSelect" class="form-select w-auto">
+    <select id="dietSelect" class="form-select form-select-sm w-auto">
       <option value="">All Categories</option>
       <option value="vegan">Vegan</option>
       <option value="vegetarian">Vegetarian</option>
       <option value="non-vegetarian">Non-Vegetarian</option>
     </select>
 
-    <button class="btn btn-success" onclick="handleNavbarSearch()">Search</button>
+    <button class="btn btn-success btn-sm" onclick="handleNavbarSearch()">Search</button>
   </div>
+</div>
+
 </div>
 
 <!-- Recipe Grid -->
@@ -76,6 +56,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="dashboard.js"></script>
+<script src="/public/dashboard.js"></script>
 </body>
 </html>

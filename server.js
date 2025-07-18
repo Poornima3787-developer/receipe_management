@@ -2,6 +2,7 @@ require('dotenv').config();
 const express=require('express');
 const app=express();
 const path = require('path');
+const cors = require('cors');
 
 const sequelize=require('./utils/db-connection');
 const userRouter=require('./routes/userRoutes');
@@ -14,11 +15,12 @@ const followRouter=require('./routes/followRoutes');
 const User=require('./models/user');
 const Recipe=require('./models/recipe');
 const Favorite=require('./models/favorite');
-const Collection=require('./models/collections');
+//const Collection=require('./models/collections');
 const Review=require('./models/review');
 const Follow=require('./models/follow');
 
 app.use(express.json());
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -30,10 +32,14 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'view', 'login.html'));
 });
 
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, 'view', 'dashboard.html'));
+});
+
 app.use('/users',userRouter);
 app.use('/recipe',recipeRouter);
 app.use('/favorite',favoriteRouter);
-app.use('/collection',collectionRouter);
+//app.use('/collection',collectionRouter);
 app.use('/reviews',reviewRouter);
 //app.use('/follow',followRouter);
 
@@ -52,17 +58,17 @@ Favorite.belongsTo(User);
 Recipe.hasMany(Favorite);
 Favorite.belongsTo(Recipe);
 
-User.hasMany(Collection);
+/*User.hasMany(Collection);
 Collection.belongsTo(User);
 
 Recipe.hasMany(Collection);
-Collection.belongsTo(Recipe);
+Collection.belongsTo(Recipe);*/
 
 User.hasMany(Review);
 Review.belongsTo(User);
 
 Recipe.hasMany(Review);
-Collection.belongsTo(Recipe);
+Review.belongsTo(Recipe);
 
 User.hasMany(Follow,{
   foreignKey: 'followerId',
@@ -73,6 +79,6 @@ User.belongsTo(Follow,{
   as: 'Following'
 });
 
-sequelize.sync().then(() => {
+sequelize.sync({ force: true }).then(() => {
     app.listen(process.env.PORT || 3000, () => console.log('Server running'));
 });

@@ -11,7 +11,7 @@ async function loginForm(event) {
     const token=response.data.token;
     localStorage.setItem('token',token);
     alert("Login Successful!");
-   window.location.href = '/create-recipe.html'
+   window.location.href = '/dashboard'
   } catch (error) {
     alert(error.response?.data?.message || "Login failed!");
   }

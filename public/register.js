@@ -15,7 +15,7 @@ async function registerForm(event){
     window.location.href="/login"
     
   } catch (error) {
-    alert('Registration failed');
     console.error(error);
+      alert('Registration failed');
   }
 }
