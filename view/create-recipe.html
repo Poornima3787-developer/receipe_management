@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Recipe</title>
+</head>
+<body>
+  <h2>Create New Recipe</h2>
+  <form onsubmit="recipeForm(event)">
+    <input type="text" name="title" placeholder="Recipe Title" required><br>
+    <textarea name="ingredients" placeholder="Ingredients" required></textarea><br>
+    <textarea name="instructions" placeholder="Instructions" required></textarea><br>
+    <input type="text" name="cookingTime" placeholder="Cooking Time" required><br>
+    <input type="number" name="servings" placeholder="Servings" required><br>
+    <input type="file" name="image"><br><br>
+    <button type="submit">Submit Recipe</button>
+
+  <select name="level" required>
+    <option value="">Select Difficulty Level</option>
+    <option value="easy">Easy</option>
+    <option value="medium">Medium</option>
+    <option value="hard">Hard</option>
+  </select>
+    
+  <select name="diet" required>
+    <option value="">Select Diet Preference</option>
+    <option value="vegan">Vegan</option>
+    <option value="vegetarian">Vegetarian</option>
+    <option value="non-vegetarian">Non-Vegetarian</option>
+  </select>
+
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="create-recipe.js"></script>
+</body>
+</html>
