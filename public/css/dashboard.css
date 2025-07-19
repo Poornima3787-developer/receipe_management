@@ -32,3 +32,21 @@
   min-height: 100vh;
   padding-bottom: 50px;
 }
+#recipeGrid {
+   
+    min-height: 100px;
+}
+
+.card {
+    border: 2px solid rgb(209, 141, 6) !important;
+    background-color: white !important;
+}
+.recipe-card {
+  width: 200%;
+  max-width: 400px;
+  padding: 15px;
+  background-color: #fff;
+  border: 2px solid rgb(209, 141, 6);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}

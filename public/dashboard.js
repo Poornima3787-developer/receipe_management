@@ -1,13 +1,20 @@
+console.log("📦 dashboard.js loaded and executing.");
+
 document.addEventListener('DOMContentLoaded', () => fetchRecipes());
 
 async function fetchRecipes(url = 'http://localhost:3000/recipe') {
   try {
     const res = await axios.get(url);
+    console.log("Full response:", res);
     const recipes = res.data.recipes;
+    console.log("Recipes fetched:", recipes); 
     const grid = document.getElementById('recipeGrid');
     grid.innerHTML = '';
-
+   console.log("Recipes fetched:", recipes);
+console.log("Type of recipes:", typeof recipes);
+console.log("recipes.length:", recipes.length);
     recipes.forEach(recipe => {
+      console.log("Appending recipe:", recipe.title);
       const col = document.createElement('div');
       col.className = 'col-md-3 mb-4';
 
@@ -23,9 +30,7 @@ async function fetchRecipes(url = 'http://localhost:3000/recipe') {
           <h5 class="recipe-title" onclick="toggleDetails(${recipe.id})">${(recipe.title)}</h5>
           <p>${avgRating}</p>
           <div id="details-${recipe.id}" class="details" style="display:none;">
-            <div class="details-images">
-              <img src="${imgSrc}" alt="${(recipe.title)}" class="img-fluid mb-2">
-            </div>
+           
             <p><strong>Cooking Time:</strong> ${recipe.cookingTime} min</p>
             <p><strong>Servings:</strong> ${recipe.servings}</p>
             <p><strong>Ingredients:</strong> ${(recipe.ingredients)}</p>

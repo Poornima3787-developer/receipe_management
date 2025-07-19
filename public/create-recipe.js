@@ -2,6 +2,11 @@ const backendUrl = 'http://localhost:3000/recipe';
 
 async function recipeForm(event) {
   event.preventDefault();
+  const token = localStorage.getItem('token');
+  if (!token) {
+    alert('Please login first!');
+    return;
+  }
   const form = event.target;
 
   const title = form.title.value;
@@ -13,7 +18,6 @@ async function recipeForm(event) {
   const diet = form.diet.value;
   const imageFile = form.image.files[0];
 
-  const token = localStorage.getItem('token');
 
 
   try {

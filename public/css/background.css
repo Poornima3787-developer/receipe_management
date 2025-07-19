@@ -1,0 +1,31 @@
+/* Full-page background */
+body {
+  background-color: #ffe0b3;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Center login box */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Transparent card without blur */
+.login-card {
+  width: 100%;
+  max-width: 340px;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.3); /* soft transparent white */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  color:white;
+}
