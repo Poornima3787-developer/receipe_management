@@ -48,14 +48,11 @@ exports.getPrefernceSearch=async (req,res)=>{
 
 exports.createRecipe=async (req,res)=>{
   try {
-    const {title,ingredients,instructions,cookingTime,servings,level,diet}=req.body;
-    const image=req.file?.image;
-
-     let imageUrl = '';
-    if (image) {
-      const result = await s3Upload(image);
-      imageUrl = result.Location;
-    }
+    const {title,ingredients,instructions,cookingTime,servings,level,diet,image}=req.body;
+   let imageUrl = '';
+if (image) {
+  imageUrl = image; 
+}
 
     const recipe=await Recipe.create({
       title,
@@ -76,6 +73,7 @@ exports.createRecipe=async (req,res)=>{
 
 exports.getMyRecipes = async (req, res) => {
   try {
+    console.log("Request from user ID:", req.user.id);
     const recipes = await Recipe.findAll({ where: { userId: req.user.id } });
     res.json({ recipes });
   } catch (error) {

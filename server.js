@@ -11,6 +11,7 @@ const favoriteRouter=require('./routes/favouriteRotes');
 const collectionRouter=require('./routes/collectionRoutes');
 const reviewRouter=require('./routes/reviewRoutes');
 const followRouter=require('./routes/followRoutes');
+const s3Router=require('./routes/s3Routes');
 
 const User=require('./models/user');
 const Recipe=require('./models/recipe');
@@ -36,12 +37,22 @@ app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'view', 'dashboard.html'));
 });
 
+app.get('/create-recipe', (req, res) => {
+  res.sendFile(path.join(__dirname, 'view', 'create-recipe.html'));
+});
+
+app.get('/my-recipes', (req, res) => {
+  res.sendFile(path.join(__dirname, 'view', 'my-recipes.html'));
+});
+
+
 app.use('/users',userRouter);
 app.use('/recipe',recipeRouter);
 app.use('/favorite',favoriteRouter);
 //app.use('/collection',collectionRouter);
 app.use('/reviews',reviewRouter);
 //app.use('/follow',followRouter);
+app.use('/',s3Router);
 
 //Associations
 User.hasMany(Recipe,{
@@ -79,6 +90,6 @@ User.belongsTo(Follow,{
   as: 'Following'
 });
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({alter:true}).then(() => {
     app.listen(process.env.PORT || 3000, () => console.log('Server running'));
 });
