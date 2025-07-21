@@ -5,7 +5,7 @@ async function fetchFavorites() {
   if (!token) return alert('Login required');
 
   try {
-    const res = await axios.get('/favorite', {
+    const res = await axios.get('/favorites', {
       headers: { Authorization: token }
     });
 
@@ -52,7 +52,7 @@ async function removeFavorite(recipeId) {
   if (!confirm("Remove this from favorites?")) return;
 
   try {
-    await axios.delete(`/favorite/${recipeId}`, {
+    await axios.delete(`/favorites/${recipeId}`, {
       headers: { Authorization: token }
     });
     alert('Removed from favorites');

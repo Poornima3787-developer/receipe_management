@@ -45,10 +45,18 @@ app.get('/my-recipes', (req, res) => {
   res.sendFile(path.join(__dirname, 'view', 'my-recipes.html'));
 });
 
+app.get('/profile',(req,res)=>{
+  res.sendFile(path.join(__dirname,'view','profile.html'))
+})
+
+app.get('/favorite',(req,res)=>{
+  res.sendFile(path.join(__dirname,'view','favorite.html'))
+})
+
 
 app.use('/users',userRouter);
 app.use('/recipe',recipeRouter);
-app.use('/favorite',favoriteRouter);
+app.use('/favorites',favoriteRouter);
 //app.use('/collection',collectionRouter);
 app.use('/reviews',reviewRouter);
 //app.use('/follow',followRouter);

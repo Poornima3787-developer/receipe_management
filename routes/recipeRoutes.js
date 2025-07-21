@@ -8,9 +8,8 @@ router.post('/',authenticate,upload.single('image'),recipeController.createRecip
 router.get('/my', authenticate, recipeController.getMyRecipes);
 router.put('/:id',authenticate,recipeController.updateRecipe);
 router.delete('/:id',authenticate,recipeController.deleteRecipe);
-router.get('/:id',recipeController.getRecipeById);
+router.get('/search',recipeController.getSearch);
 router.get('/', recipeController.getAllRecipes);
-router.get('/search',authenticate,recipeController.getSearch);
-router.get('/filter',authenticate,recipeController.getPrefernceSearch);
+router.get('/:id',recipeController.getRecipeById);
 
 module.exports=router;

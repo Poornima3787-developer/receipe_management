@@ -1,8 +1,8 @@
 const backendUrl = 'http://localhost:3000/users'; // Update for production if needed
 
-document.addEventListener('DOMContentLoaded', () => {
-  loadUserProfile();
-  loadUsersToFollow();
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadUserProfile();
+ // await loadUsersToFollow();
 });
 
 async function loadUserProfile() {

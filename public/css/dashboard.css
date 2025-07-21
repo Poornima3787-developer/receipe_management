@@ -7,7 +7,7 @@
     .details { display: none; text-align: left; margin-top: 10px; }
     .recipe-title { cursor: pointer; color: #0d6efd; text-decoration: underline; }
     .recipe-title:hover { color: #0a58ca; }
-    .recipe-img { max-width: 100%; height: auto; border-radius: 5px; }
+    .recipe-img { max-width: 100%; height: 200px;object-fit: cover;  border-radius: 5px; }
     .menu-box {
       background: #f8f9fa;
       padding: 10px 15px;
@@ -42,8 +42,8 @@
     background-color: white !important;
 }
 .recipe-card {
-  width: 200%;
-  max-width: 400px;
+  width: 100%;
+  max-width: 100%;
   padding: 15px;
   background-color: #fff;
   border: 2px solid rgb(209, 141, 6);

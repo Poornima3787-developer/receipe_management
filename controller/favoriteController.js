@@ -17,7 +17,7 @@ exports.getFavorites = async (req, res) => {
       where: { UserId: req.user.id },
       include: { model: Recipe }
     });
-    res.json(favorites);
+    res.status(200).json({ favorites });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

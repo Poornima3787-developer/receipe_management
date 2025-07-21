@@ -11,40 +11,30 @@ exports.getAllRecipes = async (req, res) => {
   }
 };
 
-exports.getSearch=async (req,res)=>{
+exports.getSearch = async (req, res) => {
   try {
-    const {query}=req.query;
-    const recipes=await Recipe.findAll({
-      where:{
-        [Op.or]:[
-      
-           { title: { [Op.like]: `%${query}%` } },
-           { ingredients: { [Op.like]: `%${query}%` } } 
-          
-        ]
-      }
-    });
+    const { query, diet,level, maxTime } = req.query;
+    const where = {};
+
+    if (query) {
+      where[Op.or] = [
+        { title: { [Op.like]: `%${query}%` } },
+        { ingredients: { [Op.like]: `%${query}%` } },
+        { instructions: { [Op.like]: `%${query}%` } }
+      ];
+    }
+
+    if (diet) where.diet = diet;
+    if (level) where.level = level; 
+    if (maxTime) where.cookingTime = { [Op.lte]: parseInt(maxTime) };
+
+    const recipes = await Recipe.findAll({ where });
     res.json({ recipes });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-}
+};
 
-exports.getPrefernceSearch=async (req,res)=>{
-  try {
-    const { diet, difficulty, maxTime } = req.query;
-  const where = {};
-  if (diet) where.diet = diet;
-  if (difficulty) where.difficulty = difficulty;
-  if (maxTime) where.cookingTime = { [Op.lte]: parseInt(maxTime) };
-
-  const recipes = await Recipe.findAll({ where });
-  res.json({ recipes });
-
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-}
 
 exports.createRecipe=async (req,res)=>{
   try {

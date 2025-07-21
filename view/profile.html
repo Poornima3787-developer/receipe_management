@@ -7,7 +7,7 @@
   <style>
     .profile-card {
       max-width: 500px;
-      margin: 30px auto;
+      margin: 300px auto;
       padding: 20px;
       border-radius: 10px;
       background: #f9f9f9;
@@ -19,19 +19,12 @@
     .form-control { text-align: center; }
   </style>
 </head>
-<body>
+<body style="background-color:#ffe0b3 ;">
 
   <div class="profile-card">
-    <img src="https://via.placeholder.com/100" id="userImage" alt="Profile Image" />
+    <img src="/images/aar8vpm44.webp" id="userImage" alt="Profile Image" />
     <h4 id="userName">Name</h4>
     <p id="userEmail">Email</p>
-
-    <!-- Navigation Links -->
-    <div class="nav-links">
-      <a href="profile.html" class="btn btn-outline-primary">Update Profile</a>
-      <a href="receipes.html" class="btn btn-outline-success">My Recipes</a>
-      <button class="btn btn-outline-danger" onclick="logout()">Logout</button>
-    </div>
 
     <!-- Update Form -->
     <form id="updateForm" onsubmit="updateProfileForm(event)" class="mb-3">
@@ -41,10 +34,7 @@
     </form>
   </div>
 
-  <div class="container mt-4">
-    <h4 class="text-center">🔍 Discover Users to Follow</h4>
-    <div id="userList" class="mt-3"></div>
-  </div>
+  
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="profile.js"></script>

@@ -75,19 +75,23 @@ async function saveFavorite(recipeId) {
 }
 
 function handleNavbarSearch() {
+
   const query = document.getElementById('navbarSearchInput').value.trim();
-  const difficulty = document.getElementById('difficultySelect').value;
+  const level = document.getElementById('difficultySelect').value;
   const diet = document.getElementById('dietSelect').value;
 
-  let url = 'http://localhost:3000/recipe';
+  let url ;
+
   const params = new URLSearchParams();
   if (query) params.append('query', query);
-  if (difficulty) params.append('difficulty', difficulty);
+  if (level) params.append('level', level);
   if (diet) params.append('diet', diet);
 
   if (params.toString()) {
-    url += `/search?${params.toString()}`;
+    url = `http://localhost:3000/recipe/search?${params.toString()}`;
+  }else{
+    url= `http://localhost:3000/recipe`;
   }
-
+console.log("🔍 Fetching recipes from URL:", url);
   fetchRecipes(url);
 }
