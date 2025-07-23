@@ -1,7 +1,3 @@
-// 📦 feed.js for Activity Feed with expandable recipe details
-
-console.log("📦 feed.js loaded and executing.");
-
 document.addEventListener('DOMContentLoaded', loadActivityFeed);
 
 async function loadActivityFeed() {
@@ -54,7 +50,6 @@ async function loadActivityFeed() {
     });
 
   } catch (error) {
-    console.error(error);
     alert('Failed to load activity feed.');
   }
 }

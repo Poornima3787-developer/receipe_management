@@ -8,7 +8,6 @@ exports.createCollection = async (req, res) => {
         const collection = await Collection.create({ name, UserId: req.user.id });
         res.status(201).json({ message: 'Collection created', collection });
     } catch (err) {
-        console.error(err);
         res.status(500).json({ message: 'Failed to create collection' });
     }
 };
@@ -18,7 +17,6 @@ exports.getCollections = async (req, res) => {
         const collections = await Collection.findAll({ where: { UserId: req.user.id } });
         res.json({ collections });
     } catch (err) {
-        console.error(err);
         res.status(500).json({ message: 'Failed to fetch collections' });
     }
 };
@@ -43,7 +41,6 @@ exports.addToCollection = async (req, res) => {
 
         res.json({ message: 'Favorite added to collection successfully', favorite });
     } catch (err) {
-        console.error(err);
         res.status(500).json({ message: 'Failed to add favorite to collection' });
     }
 };
@@ -67,7 +64,6 @@ exports.removeFromCollection = async (req, res) => {
 
         res.json({ message: 'Favorite removed from collection' });
     } catch (err) {
-        console.error(err);
         res.status(500).json({ message: 'Failed to remove favorite from collection' });
     }
 };
@@ -89,7 +85,6 @@ exports.getCollectionFavorites = async (req, res) => {
 
         res.json({ collection, favorites: collection.Favorites });
     } catch (err) {
-        console.error(err);
         res.status(500).json({ message: 'Failed to fetch collection favorites' });
     }
 };

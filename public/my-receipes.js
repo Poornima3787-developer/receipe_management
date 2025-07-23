@@ -23,7 +23,6 @@ async function fetchMyRecipes() {
       list.appendChild(item);
     });
   } catch (error) {
-    console.error(error);
     alert('Failed to fetch recipes.');
   }
 }
@@ -51,7 +50,6 @@ async function editRecipe(id) {
       <button onclick="fetchMyRecipes()">Cancel</button>
     `;
   } catch (error) {
-    console.error(error);
     alert('Failed to load recipe.');
   }
 }
@@ -91,7 +89,6 @@ async function saveRecipe(id) {
     alert('Recipe updated.');
     fetchMyRecipes();
   } catch (error) {
-    console.error(error);
     alert('Failed to update recipe.');
   }
 }
@@ -109,7 +106,6 @@ async function deleteRecipe(id) {
       fetchMyRecipes();
     }
   } catch (error) {
-    console.error(error);
     alert('Failed to delete recipe.');
   }
 }

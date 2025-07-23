@@ -92,7 +92,6 @@ if (image) {
 
 exports.getMyRecipes = async (req, res) => {
   try {
-    console.log("Request from user ID:", req.user.id);
     const recipes = await Recipe.findAll({ where: { userId: req.user.id } });
     res.json({ recipes });
   } catch (error) {

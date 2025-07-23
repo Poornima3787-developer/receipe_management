@@ -14,6 +14,7 @@ const collectionRouter=require('./routes/collectionRoutes');
 const reviewRouter=require('./routes/reviewRoutes');
 const followRouter=require('./routes/followRoutes');
 const s3Router=require('./routes/s3Routes');
+const adminRouter=require('./routes/adminRoutes');
 
 //model imports
 const User=require('./models/user');
@@ -22,7 +23,6 @@ const Favorite=require('./models/favorite');
 const Collection=require('./models/collections');
 const Review=require('./models/review');
 const Follow=require('./models/follow');
-
 
 //middleware
 app.use(express.json());
@@ -67,6 +67,10 @@ app.get('/feed',(req,res)=>{
   res.sendFile(path.join(__dirname,'view','feed.html'))
 })
 
+app.get('/admin',(req,res)=>{
+  res.sendFile(path.join(__dirname,'view','admin.html'))
+})
+
 //API routes
 app.use('/users',userRouter);
 app.use('/recipe',recipeRouter);
@@ -75,7 +79,7 @@ app.use('/collections',collectionRouter);
 app.use('/reviews',reviewRouter);
 app.use('/follow',followRouter);
 app.use('/',s3Router);
-
+app.use('/admin',adminRouter);
 
 //Associations
 User.hasMany(Recipe,{

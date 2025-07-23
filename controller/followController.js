@@ -68,7 +68,6 @@ exports.getActivity= async (req, res) => {
 
     res.json({ recipes, reviews });
   } catch (error) {
-     console.error("🔥 getActivity error:", error);
     res.status(500).json({ message: error.message });
   }
 };

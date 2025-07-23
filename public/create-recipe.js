@@ -45,7 +45,6 @@ async function recipeForm(event) {
     alert('Recipe created successfully!');
     form.reset();
   } catch (error) {
-    console.error(error);
     alert('Error creating recipe.');
   }
 }

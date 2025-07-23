@@ -13,7 +13,15 @@ const User = sequelize.define('User', {
     unique: true
   },
   password: DataTypes.STRING,
-  profileImageUrl: DataTypes.STRING
+  profileImageUrl: DataTypes.STRING,
+  status: {
+    type: DataTypes.ENUM('pending', 'approved', 'banned'),
+    defaultValue: 'pending'
+  },
+  role: {
+    type: DataTypes.ENUM('user', 'admin'),
+    defaultValue: 'user'
+  }
 });
 
 module.exports=User;

@@ -25,7 +25,6 @@ exports.getReviewsForRecipe = async (req, res) => {
   where: { RecipeId: recipeId },
   include: [{ model: User, attributes: ['id', 'name'] }]
 });
-console.log("Fetched reviews:", reviews);
 const average = (
   reviews.reduce((sum, r) => sum + r.rating, 0) / (reviews.length || 1)
 ).toFixed(1);
@@ -33,7 +32,6 @@ const average = (
 res.json({ reviews, averageRating: parseFloat(average) });
 
   } catch (error) {
-    console.error("Error fetching reviews:", error);
     res.status(500).json({ message: error.message });
   }
 };

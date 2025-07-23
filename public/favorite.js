@@ -25,7 +25,6 @@ async function loadCollections() {
 
     select.addEventListener('change', fetchFavorites);
   } catch (err) {
-    console.error(err);
     alert('Failed to load collections');
   }
 }
@@ -36,8 +35,6 @@ async function fetchFavorites() {
 
   const collectionId = document.getElementById('collectionSelect').value;
   let url = collectionId ? `/collections/${collectionId}/favorites` : '/favorites';
-
-  console.log("Fetching favorites from URL:", url);
 
   try {
     const res = await axios.get(url, { headers: { Authorization: token } });
@@ -75,7 +72,6 @@ async function fetchFavorites() {
       grid.appendChild(card);
     });
   } catch (err) {
-    console.error(err);
     alert('Failed to load favorites');
   }
 }
@@ -87,14 +83,12 @@ async function removeFavorite(favoriteId) {
   if (!confirm("Remove this from favorites?")) return;
 
   try {
-    console.log("Deleting favorite at URL:", `/favorites/${favoriteId}`);
     await axios.delete(`/favorites/${favoriteId}`, {
       headers: { Authorization: token }
     });
     alert('Removed from favorites');
     fetchFavorites();
   } catch (err) {
-    console.error(err);
     alert('Failed to remove');
   }
 }
@@ -119,7 +113,6 @@ async function createCollection() {
         select.value = res.data.collection.id; // ensure your backend returns the created collection in response
         fetchFavorites(); // refresh favorites to reflect any association if needed
     } catch (err) {
-        console.error(err);
         alert('Failed to create collection');
     }
 }
@@ -169,7 +162,6 @@ async function addFavoriteToCollection(favoriteId) {
         fetchFavorites();
 
     } catch (err) {
-        console.error(err);
         alert(err.response?.data?.message || 'Failed to add to collection.');
     }
 }

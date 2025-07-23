@@ -26,7 +26,6 @@ async function loadUserProfile() {
     document.getElementById('userName').innerText = user.name;
     document.getElementById('userEmail').innerText = user.email;
   } catch (error) {
-    console.error(error);
     alert(error.response?.data?.message || 'Failed to load profile.');
   }
 }
@@ -55,7 +54,6 @@ async function loadOtherUserProfile(userId) {
     document.getElementById('updateForm').style.display = 'none';
 
   } catch (error) {
-    console.error(error);
     alert(error.response?.data?.message || 'Failed to load user profile.');
   }
 }
@@ -77,7 +75,6 @@ async function updateProfileForm(event) {
     alert('Profile updated successfully.');
     location.reload();
   } catch (error) {
-    console.error(error);
     alert(error.response?.data?.message || 'Failed to update profile.');
   }
 }

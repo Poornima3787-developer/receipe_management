@@ -3,7 +3,6 @@ window.addEventListener('load', fetchMyRecipes);
 
 async function fetchMyRecipes() {
   const token = localStorage.getItem('token');
-  console.log("🔐 Token found:", token);
   try {
     const res = await axios.get('http://localhost:3000/recipe/my', {
       headers: { Authorization: token }
@@ -33,7 +32,6 @@ async function fetchMyRecipes() {
 });
 
   } catch (error) {
-    console.error(error);
     alert('Failed to fetch recipes.');
   }
 }
@@ -48,7 +46,6 @@ async function editRecipe(id) {
     });
 
     const recipe = res.data.recipe;
-    console.log("Editing Recipe:", recipe);
 
     const item = document.querySelector(`#recipe-${id}`);
 
@@ -70,7 +67,6 @@ async function editRecipe(id) {
 `;
 
   } catch (error) {
-    console.error(error);
     alert('Failed to load recipe.');
   }
 }
@@ -140,7 +136,6 @@ async function saveRecipe(id) {
     alert('Recipe updated.');
     fetchMyRecipes();
   } catch (error) {
-    console.error(error);
     alert('Failed to update recipe.');
   }
 }
@@ -159,7 +154,6 @@ async function deleteRecipe(id) {
       fetchMyRecipes();
     }
   } catch (error) {
-    console.error(error);
     alert('Failed to delete recipe.');
   }
 }

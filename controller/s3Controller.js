@@ -11,9 +11,7 @@ const s3 = new AWS.S3();
 
 exports.getImage=async (req,res)=>{
   const fileName = `${Date.now()}.jpg`;
-  console.log('req.query:', req.query);
   const contentType = req.query.contentType || 'image/jpeg';
-  console.log('Generating presigned URL with ContentType:', contentType);
 
   const params = {
     Bucket: process.env.BUCKET_NAME,
@@ -26,7 +24,6 @@ exports.getImage=async (req,res)=>{
   const url = await s3.getSignedUrlPromise('putObject', params);
   res.json({ url });
 } catch (error) {
-  console.error(error);
   res.status(500).json({ message: 'Failed to get S3 signed URL' });
 }
 

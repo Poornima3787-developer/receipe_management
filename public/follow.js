@@ -31,7 +31,6 @@ async function loadUsers() {
     });
 
   } catch (err) {
-    console.error(err);
     userList.innerHTML = '<p>Error loading users.</p>';
   }
 }

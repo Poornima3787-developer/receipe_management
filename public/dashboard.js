@@ -1,4 +1,3 @@
-console.log("📦 dashboard.js loaded and executing.");
 
 document.addEventListener('DOMContentLoaded', () => fetchRecipes());
 
@@ -9,7 +8,7 @@ async function fetchRecipes(url = 'http://localhost:3000/recipe') {
     const grid = document.getElementById('recipeGrid');
     grid.innerHTML = '';
     recipes.forEach(recipe => {
-      console.log("Appending recipe:", recipe.title);
+
       const col = document.createElement('div');
       col.className = 'col-md-3 mb-4';
 
@@ -52,7 +51,6 @@ async function fetchRecipes(url = 'http://localhost:3000/recipe') {
       grid.appendChild(col);
     });
   } catch (error) {
-    console.error(error);
     alert('Failed to load recipes.');
   }
 }
@@ -75,7 +73,6 @@ async function saveFavorite(recipeId) {
     });
     alert('Recipe saved to favorites!');
   } catch (error) {
-    console.error(error);
     alert(error.response?.data?.message || 'Failed to save favorite.');
   }
 }
@@ -98,7 +95,6 @@ function handleNavbarSearch() {
   }else{
     url= `http://localhost:3000/recipe`;
   }
-console.log("🔍 Fetching recipes from URL:", url);
   fetchRecipes(url);
 }
 
@@ -129,7 +125,6 @@ async function submitReview(recipeId) {
     alert('Review submitted!');
     loadReviews(recipeId);
   } catch (error) {
-    console.error(error);
     alert(error.response?.data?.message || 'Failed to submit review.');
   }
 }
@@ -157,7 +152,6 @@ async function loadReviews(recipeId) {
       });
     }
   } catch (error) {
-    console.error(error);
     alert('Failed to load reviews.');
   }
 }

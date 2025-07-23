@@ -45,7 +45,9 @@ exports.login=async (req,res)=>{
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
-
+    if (user.status === 'banned') {
+      return res.status(403).json({ message: 'Your account has been banned.' });
+    }
     const token = generateToken(user.id, user.name);
 
     res.status(200).json({
