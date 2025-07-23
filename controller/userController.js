@@ -3,6 +3,7 @@ const User=require('../models/user');
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const Recipe=require('../models/recipe');
+const {Op}=require('sequelize');
 
 function generateToken(id, name) {
   return jwt.sign({ userId: id, name }, process.env.JWT_SECRET, { expiresIn: '1h' });
@@ -88,5 +89,19 @@ exports.getProfile=async (req,res)=>{
     res.json({user});
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+}
+
+exports.getAllUsers=async (req,res)=>{
+  try {
+    const users = await User.findAll({
+      where: {
+        id: { [Op.ne]: req.user.id }  // Exclude self
+      },
+      attributes: ['id', 'name']
+    });
+    res.json({ users });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 }

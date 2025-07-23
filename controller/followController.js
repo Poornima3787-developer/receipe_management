@@ -1,6 +1,7 @@
 const Follow=require('../models/follow');
 const Recipe=require('../models/recipe');
 const Review=require('../models/review');
+const User=require('../models/user');
 
 exports.addFollow=async (req, res) => {
   try {
@@ -32,7 +33,7 @@ exports.getFollow= async (req, res) => {
   try {
     const following = await Follow.findAll({
       where: { followerId: req.user.id },
-      include: [{ model: User, as: 'Following', attributes: ['id', 'username'] }]
+      include: [{ model: User, as: 'Following', attributes: ['id', 'name'] }]
     });
     res.json({ following });
   } catch (error) {
@@ -50,7 +51,7 @@ exports.getActivity= async (req, res) => {
 
     const recipes = await Recipe.findAll({
       where: { userId: followingIds },
-      include: [{ model: User, attributes: ['id', 'username'] }],
+      include: [{ model: User, attributes: ['id', 'name'] }],
       order: [['createdAt', 'DESC']],
       limit: 10
     });
@@ -58,7 +59,7 @@ exports.getActivity= async (req, res) => {
     const reviews = await Review.findAll({
       where: { userId: followingIds },
       include: [
-        { model: User, attributes: ['id', 'username'] },
+        { model: User, attributes: ['id', 'name'] },
         { model: Recipe, attributes: ['id', 'title'] }
       ],
       order: [['createdAt', 'DESC']],
@@ -67,6 +68,7 @@ exports.getActivity= async (req, res) => {
 
     res.json({ recipes, reviews });
   } catch (error) {
+     console.error("🔥 getActivity error:", error);
     res.status(500).json({ message: error.message });
   }
 };

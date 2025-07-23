@@ -1,19 +1,34 @@
 const { Op } = require('sequelize');
 const Recipe=require('../models/recipe');
-
+const Review=require('../models/review');
 
 exports.getAllRecipes = async (req, res) => {
   try {
-    const recipes = await Recipe.findAll();
-    res.json({ recipes });
+    const recipes = await Recipe.findAll({
+      include: [{ model: Review, attributes: ['rating'] }]
+    });
+
+    const recipesWithRatings = recipes.map(recipe => {
+      const ratings = recipe.Reviews.map(r => r.rating);
+      const averageRating = ratings.length > 0
+        ? (ratings.reduce((sum, r) => sum + r, 0) / ratings.length).toFixed(1)
+        : null;
+      return {
+        ...recipe.get({ plain: true }),
+        averageRating
+      };
+    });
+
+    res.json({ recipes: recipesWithRatings });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+
 exports.getSearch = async (req, res) => {
   try {
-    const { query, diet,level, maxTime } = req.query;
+    const { query, diet, level, maxTime } = req.query;
     const where = {};
 
     if (query) {
@@ -23,13 +38,27 @@ exports.getSearch = async (req, res) => {
         { instructions: { [Op.like]: `%${query}%` } }
       ];
     }
-
     if (diet) where.diet = diet;
-    if (level) where.level = level; 
+    if (level) where.level = level;
     if (maxTime) where.cookingTime = { [Op.lte]: parseInt(maxTime) };
 
-    const recipes = await Recipe.findAll({ where });
-    res.json({ recipes });
+    const recipes = await Recipe.findAll({
+      where,
+      include: [{ model: Review, attributes: ['rating'] }]
+    });
+
+    const recipesWithRatings = recipes.map(recipe => {
+      const ratings = recipe.Reviews.map(r => r.rating);
+      const averageRating = ratings.length > 0
+        ? (ratings.reduce((sum, r) => sum + r, 0) / ratings.length).toFixed(1)
+        : null;
+      return {
+        ...recipe.get({ plain: true }),
+        averageRating
+      };
+    });
+
+    res.json({ recipes: recipesWithRatings });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
